@@ -1,6 +1,6 @@
 package entity;
 
-import java.time.LocalDateTime;
+import java.sql.Date;
 
 public class User {
     private Integer userId;
@@ -8,13 +8,13 @@ public class User {
     private String surname;
     private String userCode;
     private Double bonus;
-    private LocalDateTime createdAt;
-    private LocalDateTime modifiedAt;
+    private Date createdAt;
+    private Date modifiedAt;
 
     public User() {
     }
 
-    public User(Integer userId, String name, String surname, String userCode, Double bonus, LocalDateTime createdAt, LocalDateTime modifiedAt) {
+    public User(Integer userId, String name, String surname, String userCode, Double bonus, Date createdAt, Date modifiedAt) {
         this.userId = userId;
         this.name = name;
         this.surname = surname;
@@ -64,19 +64,19 @@ public class User {
         this.bonus = bonus;
     }
 
-    public LocalDateTime getCreatedAt() {
+    public Date getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(LocalDateTime createdAt) {
+    public void setCreatedAt(Date createdAt) {
         this.createdAt = createdAt;
     }
 
-    public LocalDateTime getModifiedAt() {
+    public Date getModifiedAt() {
         return modifiedAt;
     }
 
-    public void setModifiedAt(LocalDateTime modifiedAt) {
+    public void setModifiedAt(Date modifiedAt) {
         this.modifiedAt = modifiedAt;
     }
 

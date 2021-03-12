@@ -4,33 +4,33 @@ import entity.UserProduct;
 import inter.AbstractDao;
 import inter.UserProductDaoInter;
 
-import java.sql.ResultSet;
-import java.util.List;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.Statement;
 
 public class UserProductDaoImpl extends AbstractDao implements UserProductDaoInter {
 
-    private UserProduct getUserProduct(ResultSet rs) throws Exception {
-        int userProductId = rs.getInt("user_product_id");
-        int userId =
-    }
-
     @Override
-    public List<UserProductDaoInter> getAll() {
-        return null;
-    }
-
-    @Override
-    public UserProductDaoInter getById(int id) {
-        return null;
-    }
-
-    @Override
-    public boolean add(UserProductDaoInter up) {
-        return false;
+    public boolean add(UserProduct up) {
+        try (Connection c = connect()) {
+            PreparedStatement stmt = c.prepareStatement("insert into user_product (user_id, product_id) values (?, ?)");
+            stmt.setInt(1, up.getUserId().getUserId());
+            stmt.setInt(2, up.getProductId().getProdictId());
+            return stmt.execute();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return false;
+        }
     }
 
     @Override
     public boolean remove(int id) {
-        return false;
+        try (Connection c = connect()) {
+            Statement stmt = c.createStatement();
+            return stmt.execute("delete from user_product where user_product_id = " + id);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return false;
+        }
     }
 }
